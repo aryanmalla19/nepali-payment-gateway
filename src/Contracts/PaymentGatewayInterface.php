@@ -6,6 +6,6 @@ namespace Kbk\NepaliPaymentGateway\Contracts;
 
 interface PaymentGatewayInterface
 {
-    public function payment(array $data): BasePaymentVerifyResponse;
+    public function payment(array $data);
     public function verify(array $data): BasePaymentVerifyResponse;
 }
