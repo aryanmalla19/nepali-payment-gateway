@@ -5,7 +5,10 @@
     "autoload": {
         "psr-4": {
             "Kbk\\NepaliPaymentGateway\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
