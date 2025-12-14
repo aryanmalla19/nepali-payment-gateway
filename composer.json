@@ -1,10 +1,10 @@
 {
-    "name": "aryan/nepali-payment-gateway",
+    "name": "kbk/nepali-payment-gateway",
     "type": "library",
     "description": "Nepali Payment Gateway integration in PHP language. It includes eSewa, Khalti, ConnectIps, etc.",
     "autoload": {
         "psr-4": {
-            "Aryan\\NepaliPaymentGateway\\": "src/"
+            "Kbk\\NepaliPaymentGateway\\": "src/"
         }
     },
     "authors": [

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aryan\NepaliPaymentGateway\Contracts;
+namespace Kbk\NepaliPaymentGateway\Contracts;
 
 abstract class BasePaymentGateway implements PaymentGatewayInterface
 {

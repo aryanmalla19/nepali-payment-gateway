@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aryan\NepaliPaymentGateway\Exceptions;
+namespace Kbk\NepaliPaymentGateway\Exceptions;
 
 use Exception;
 use Throwable;

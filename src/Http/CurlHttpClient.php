@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Aryan\NepaliPaymentGateway\Http;
+namespace Kbk\NepaliPaymentGateway\Http;
 
-use Aryan\NepaliPaymentGateway\Contracts\HttpClientInterface;
-use Aryan\NepaliPaymentGateway\Exceptions\HttpClientException;
+use Kbk\NepaliPaymentGateway\Contracts\HttpClientInterface;
+use Kbk\NepaliPaymentGateway\Exceptions\HttpClientException;
 
 class CurlHttpClient implements HttpClientInterface
 {
