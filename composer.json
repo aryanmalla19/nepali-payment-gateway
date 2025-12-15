@@ -2,6 +2,7 @@
     "name": "kbk/nepali-payment-gateway",
     "type": "library",
     "description": "Nepali Payment Gateway integration in PHP language. It includes eSewa, Khalti, ConnectIps, etc.",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Kbk\\NepaliPaymentGateway\\": "src/"
