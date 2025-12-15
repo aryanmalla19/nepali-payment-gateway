@@ -23,7 +23,7 @@ class EsewaRequestDTO
     /**
      * @throws InvalidPayloadException
      */
-    public static function fromArray(array $data): EsewaRequestDTO
+    public static function fromArray(array $data): self
     {
         if (!isset($data['total_amount'])) {
             throw new InvalidPayloadException('Total Amount is required');
@@ -46,15 +46,16 @@ class EsewaRequestDTO
         }
 
         return new self(
-            $data['success_url'],
-            $data['failure_url'],
-            $data['total_amount'],
-            $data['transaction_uuid'],
-            $data['tax_amount'] ?? 0,
-            $data['amount'] ?? 0,
-            $data['product_service_charge'] ?? 0,
-            $data['product_delivery_charge'] ?? 0,
+            successUrl: $data['success_url'],
+            failureUrl: $data['failure_url'],
+            totalAmount: (float) $data['total_amount'],
+            transactionId: (string) $data['transaction_uuid'],
+            taxAmount: (float) ($data['tax_amount'] ?? 0),
+            amount: (float) ($data['amount'] ?? 0),
+            productServiceCharge: (float) ($data['product_service_charge'] ?? 0),
+            productDeliveryCharge: (float) ($data['product_delivery_charge'] ?? 0),
         );
+
     }
 
     public function toArray(): array

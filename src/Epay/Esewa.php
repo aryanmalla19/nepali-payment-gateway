@@ -40,7 +40,7 @@ final class Esewa extends BasePaymentGateway
     public function payment(array $data): void
     {
         $dto = EsewaRequestDTO::fromArray($data);
-        $url = self::BASE_URLS[$this->environment]['url'];
+        $url = self::BASE_URLS[$this->environment]['url'] . 'main/v2/form';
 
         $payload = [
             'product_code' => $this->productCode,
