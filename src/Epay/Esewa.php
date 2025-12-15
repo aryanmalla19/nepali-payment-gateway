@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kbk\NepaliPaymentGateway\Epay;
 
-use JetBrains\PhpStorm\NoReturn;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaRequestDTO;
@@ -14,7 +13,7 @@ use Kbk\NepaliPaymentGateway\Http\CurlHttpClient;
 
 final class Esewa extends BasePaymentGateway
 {
-    private string $environment;
+    private readonly string $environment;
 
     const BASE_URLS = [
         'live' => [
@@ -28,8 +27,8 @@ final class Esewa extends BasePaymentGateway
     ];
 
     public function __construct(
-        private string $productCode,
-        private string $secretKey
+        private readonly string $productCode,
+        private readonly string $secretKey
     ) {
         parent::__construct(new CurlHttpClient()); // Use DI in future but right now we don't need it
         $this->environment = $this->productCode === 'EPAYTEST' ? 'test' : 'live';
@@ -38,7 +37,6 @@ final class Esewa extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    #[NoReturn]
     public function payment(array $data): void
     {
         $dto = EsewaRequestDTO::fromArray($data);
@@ -56,7 +54,6 @@ final class Esewa extends BasePaymentGateway
 
         $this->submitForm($url, $payload);
     }
-
 
     public function verify(array $data): BasePaymentVerifyResponse
     {

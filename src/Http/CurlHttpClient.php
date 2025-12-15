@@ -7,7 +7,7 @@ namespace Kbk\NepaliPaymentGateway\Http;
 use Kbk\NepaliPaymentGateway\Contracts\HttpClientInterface;
 use Kbk\NepaliPaymentGateway\Exceptions\HttpClientException;
 
-class CurlHttpClient implements HttpClientInterface
+final class CurlHttpClient implements HttpClientInterface
 {
     private array $headers = [
         'Content-Type: application/json',
