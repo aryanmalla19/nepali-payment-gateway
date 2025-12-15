@@ -7,6 +7,7 @@ namespace Kbk\NepaliPaymentGateway\Epay;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaRequestDTO;
+use Kbk\NepaliPaymentGateway\DTOs\EsewaValidationRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaVerifyResponseDTO;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use Kbk\NepaliPaymentGateway\Http\CurlHttpClient;
@@ -55,11 +56,16 @@ final class Esewa extends BasePaymentGateway
         $this->submitForm($url, $payload);
     }
 
+    /**
+     * @throws InvalidPayloadException
+     */
     public function verify(array $data): BasePaymentVerifyResponse
     {
+        $dto = EsewaValidationRequestDTO::fromArray($data);
+
         $url = self::BASE_URLS[$this->environment]['url'] . 'transaction/status?' . http_build_query([
             'product_code' => $this->productCode,
-            ...$data,
+            ...$dto->toArray(),
         ]);
 
         $response = $this->httpClient->get($url);
