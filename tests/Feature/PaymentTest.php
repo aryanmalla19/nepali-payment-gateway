@@ -26,7 +26,7 @@ class PaymentTest extends TestCase
         $this->expectException(InvalidPayloadException::class);
         $esewa = new Esewa('EPAYTEST', '3282733');
         $esewa->payment([
-            'total_amount' => -1,
+            'amount' => -1,
             'transaction_uuid' => uniqid(),
             'success_url' => 'https://example.com/success',
             'failure_url' => 'https://example.com/failure',
@@ -49,7 +49,7 @@ class PaymentTest extends TestCase
         $this->expectException(InvalidPayloadException::class);
         $esewa = new Esewa('EPAYTEST', '3282733');
         $esewa->payment([
-            'total_amount' => 100,
+            'amount' => 100,
             'success_url' => 'https://example.com/success',
             'failure_url' => 'https://example.com/failure',
         ]);
@@ -61,7 +61,7 @@ class PaymentTest extends TestCase
         $esewa = new Esewa('EPAYTEST', '3282733');
         $this->expectExceptionMessage('Invalid success URL');
         $esewa->payment([
-            'total_amount' => 100,
+            'amount' => 100,
             'transaction_uuid' => uniqid(),
             'failure_url' => 'https://example.com/failure',
         ]);
@@ -73,7 +73,7 @@ class PaymentTest extends TestCase
         $this->expectExceptionMessage('Invalid failure URL');
         $esewa = new Esewa('EPAYTEST', '3282733');
         $esewa->payment([
-            'total_amount' => 100,
+            'amount' => 100,
             'transaction_uuid' => uniqid(),
             'success_url' => 'https://example.com/success',
         ]);
@@ -85,7 +85,7 @@ class PaymentTest extends TestCase
         $this->expectExceptionMessage('Invalid success URL');
         $esewa = new Esewa('EPAYTEST', '3282733');
         $esewa->payment([
-            'total_amount' => 100,
+            'amount' => 100,
             'transaction_uuid' => uniqid(),
             'success_url' => 'It should fail',
             'failure_url' => 'https://example.com/failure',
