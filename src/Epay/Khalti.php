@@ -48,7 +48,7 @@ class Khalti extends BasePaymentGateway
         $dto = KhaltiRequestDTO::fromArray($data);
 
         $response = $this->httpClient->post($url, $dto->toArray(), $this->headers);
-//        echo $response['payment_url'];
+
         header('Location: ' . $response['payment_url']);
     }
 
@@ -58,11 +58,12 @@ class Khalti extends BasePaymentGateway
     public function verify(array $data): BasePaymentVerifyResponse
     {
         $url = self::BASE_URLS[$this->environment]['url'] . 'epayment/lookup/';
+
         if(!isset($data['pidx'])){
             throw new InvalidPayloadException('Pidx is required');
         }
 
-        $response = $this->httpClient->post($url, [], $this->headers);
+        $response = $this->httpClient->post($url, $data, $this->headers);
 
         return new KhaltiVerifyResponseDTO($response);
     }
