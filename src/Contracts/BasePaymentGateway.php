@@ -12,7 +12,7 @@ abstract class BasePaymentGateway implements PaymentGatewayInterface
     {}
 
     #[NoReturn]
-    private function submitForm(string $url, array $payload): void
+    protected function submitForm(string $url, array $payload): void
     {
         echo '<html><body>';
         echo "<form id='form' method='POST' action='{$url}'>";
