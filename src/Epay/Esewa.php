@@ -27,11 +27,23 @@ final class Esewa extends BasePaymentGateway
         ]
     ];
 
+    /**
+     * @throws InvalidPayloadException
+     */
     public function __construct(
         private readonly string $productCode,
         private readonly string $secretKey
     ) {
         parent::__construct(new CurlHttpClient()); // Use DI in future but right now we don't need it
+
+        if (empty($this->productCode)) {
+            throw new InvalidPayloadException('Product Code is required');
+        }
+
+        if (empty($this->secretKey)){
+            throw new InvalidPayloadException('Secret Key is required');
+        }
+
         $this->environment = $this->productCode === 'EPAYTEST' ? 'test' : 'live';
     }
 
