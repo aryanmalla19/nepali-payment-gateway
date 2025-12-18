@@ -29,9 +29,21 @@ final class Khalti extends BasePaymentGateway
         ],
     ];
 
+    /**
+     * @throws InvalidPayloadException
+     */
     public function __construct(string $secretKey, string $environment='test')
     {
         parent::__construct(new CurlHttpClient()); // Use DI but for package no DI is good (Change in future if needed)
+
+        if(!in_array($environment, ['live', 'test'])){
+            throw new InvalidPayloadException('Environment must be either Live or Test');
+        }
+
+        if(empty($secretKey)){
+            throw new InvalidPayloadException('Secret Key is required');
+        }
+
         $this->environment = $environment;
         $this->secretKey = $secretKey;
         $this->headers = [
