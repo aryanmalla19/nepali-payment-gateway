@@ -29,8 +29,16 @@ class KhaltiRequestDTO
             throw new InvalidPayloadException('Return Url is required');
         }
 
+        if(!filter_var($data['return_url'], FILTER_VALIDATE_URL)){
+            throw new InvalidPayloadException('Return Url must be a url');
+        }
+
         if(!isset($data['website_url'])){
             throw new InvalidPayloadException('Website Url is required');
+        }
+
+        if(!filter_var($data['website_url'], FILTER_VALIDATE_URL)){
+            throw new InvalidPayloadException('Website Url must be a url');
         }
 
         if(!isset($data['amount'])){
