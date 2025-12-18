@@ -57,6 +57,10 @@ class KhaltiRequestDTO
             throw new InvalidPayloadException('Amount must be numeric');
         }
 
+        if((int) $data['amount'] < 0){
+            throw new InvalidPayloadException('Amount must be greater than 0');
+        }
+
         return new self(
             returnUrl: $data['return_url'],
             websiteUrl: $data['website_url'],
