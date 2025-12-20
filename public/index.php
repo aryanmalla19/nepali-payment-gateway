@@ -13,7 +13,7 @@ require __DIR__ . '/../vendor/autoload.php';
 //])->isSuccess();
 
 
-//$khalti = new Khalti('');
+//$khalti = new Khalti('78d9d9fa6f8340c597bc1248bd2d8162');
 //
 //$khalti->payment([
 //    'return_url' => 'http://localhost:8000/success',
@@ -23,6 +23,10 @@ require __DIR__ . '/../vendor/autoload.php';
 //    'purchase_order_name' => 'test',
 //]);
 //
-//$khalti->verify([
-//    'pidx' => '78d9d9fa6f8340c597bc1248bd2d8162',
-//]);
+//var_dump($khalti->verify([
+//    'pidx' => '',
+//]));
+
+//var_dump($khalti->getBankList('mobilecheckout'));
+
+//var_dump($khalti->refund(''));
