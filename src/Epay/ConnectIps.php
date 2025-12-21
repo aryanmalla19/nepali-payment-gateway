@@ -4,6 +4,7 @@ namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
+use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsRequestDTO;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use Kbk\NepaliPaymentGateway\Http\CurlHttpClient;
 use Kbk\NepaliPaymentGateway\Validators\ConnectIpsConfig;
@@ -23,16 +24,17 @@ final class ConnectIps extends BasePaymentGateway
     )
     {
         parent::__construct(new CurlHttpClient()); // Use DI but not right now in this package
-        ConnectIpsConfig::construct(get_defined_vars());
+        ConnectIpsConfig::validate(get_defined_vars());
     }
 
     /**
      * @param array $data
      * @return mixed
+     * @throws InvalidPayloadException
      */
     public function payment(array $data)
     {
-        // TODO: Implement payment() method.
+        $dto = ConnectIpsRequestDTO::fromArray($data);
     }
 
     /**

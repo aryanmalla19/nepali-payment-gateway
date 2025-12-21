@@ -9,7 +9,7 @@ class ConnectIpsConfig
     /**
      * @throws InvalidPayloadException
      */
-    public static function construct(array $config): void
+    public static function validate(array $config): void
     {
         if(!filter_var($config['base_url'], FILTER_VALIDATE_URL)){
             throw new InvalidPayloadException('Base Url must be a valid url');
