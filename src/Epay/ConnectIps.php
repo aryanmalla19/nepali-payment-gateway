@@ -4,6 +4,7 @@ namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
+use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsDefaultDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsRequestDTO;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use Kbk\NepaliPaymentGateway\Http\CurlHttpClient;
@@ -11,20 +12,14 @@ use Kbk\NepaliPaymentGateway\Validators\ConnectIpsConfig;
 
 final class ConnectIps extends BasePaymentGateway
 {
+    private ConnectIpsDefaultDTO $defaultDTO;
     /**
      * @throws InvalidPayloadException
      */
-    public function __construct(
-        private readonly string $base_url,
-        private readonly string $merchant_id,
-        private readonly string $app_id,
-        private readonly string $app_name,
-        private readonly string $private_key_path,
-        private readonly string $password,
-    )
+    public function __construct(array $data)
     {
         parent::__construct(new CurlHttpClient()); // Use DI but not right now in this package
-        ConnectIpsConfig::validate(get_defined_vars());
+        $this->defaultDTO = ConnectIpsDefaultDTO::fromArray($data);
     }
 
     /**
@@ -34,7 +29,11 @@ final class ConnectIps extends BasePaymentGateway
      */
     public function payment(array $data)
     {
-        $dto = ConnectIpsRequestDTO::fromArray($data);
+        $requestDto = ConnectIpsRequestDTO::fromArray($data);
+        $data = array_merge($requestDto->toArray(), $this->defaultDTO->toArray());
+        $token = connectips_signature_hash($data, $this->defaultDTO->getPrivateKeyPath());
+
+        $this->submitForm($this->defaultDTO->getBaseUrl(), ['TOKEN' => $token, ...$data]);
     }
 
     /**

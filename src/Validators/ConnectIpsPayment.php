@@ -23,7 +23,7 @@ class ConnectIpsPayment
             throw new InvalidPayloadException('Transaction Currency is required');
         }
 
-        if(empty($config['transaction_amount']) || is_numeric($config['transaction_amount'])){
+        if(empty($config['transaction_amount']) || !is_numeric($config['transaction_amount'])){
             throw new InvalidPayloadException('Transaction Amount is required and must be numeric');
         }
 

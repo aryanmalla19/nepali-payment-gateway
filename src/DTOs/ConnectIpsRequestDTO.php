@@ -28,7 +28,7 @@ class ConnectIpsRequestDTO
             transactionId: $data['transaction_id'],
             transactionDate: $data['transaction_date'],
             transactionCurrency: strtoupper($data['transaction_currency']),
-            transactionAmount: $data['transaction_amount'],
+            transactionAmount: $data['transaction_amount'] * 100,
             remarks: $data['remarks'],
             particulars: $data['particulars'],
             referenceId: $data['reference_id'],
