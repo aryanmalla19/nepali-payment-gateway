@@ -6,6 +6,8 @@ use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsDefaultDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsRequestDTO;
+use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsResponseDTO;
+use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsValidationDTO;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use Kbk\NepaliPaymentGateway\Http\CurlHttpClient;
 use Kbk\NepaliPaymentGateway\Validators\ConnectIpsConfig;
@@ -32,16 +34,30 @@ final class ConnectIps extends BasePaymentGateway
         $requestDto = ConnectIpsRequestDTO::fromArray($data);
         $data = array_merge($requestDto->toArray(), $this->defaultDTO->toArray());
         $token = connectips_signature_hash($data, $this->defaultDTO->getPrivateKeyPath());
+        $url = $this->defaultDTO->getBaseUrl() . '/connectipswebgw/loginpage';
 
-        $this->submitForm($this->defaultDTO->getBaseUrl(), ['TOKEN' => $token, ...$data]);
+        $this->submitForm($url, ['TOKEN' => $token, ...$data]);
     }
 
     /**
      * @param array $data
      * @return BasePaymentVerifyResponse
+     * @throws InvalidPayloadException
      */
     public function verify(array $data): BasePaymentVerifyResponse
     {
-        // TODO: Implement verify() method.
+        $url = $this->defaultDTO->getBaseUrl() . '/connectipswebws/api/creditor/validatetxn';
+        $dto = ConnectIpsValidationDTO::fromArray($data);
+        $data = array_merge($this->defaultDTO->toArrayForVerify(), $dto->toArray());
+        $token = connectips_signature_hash_verify($data, $this->defaultDTO->getPrivateKeyPath());
+
+        $payload = [
+            'token' => $token,
+            ...$data
+        ];
+
+        $response = $this->httpClient->post($url, $payload, $this->defaultDTO->getDefaultHeaders());
+
+        return new ConnectIpsResponseDTO($response);
     }
 }
