@@ -42,11 +42,19 @@ class ConnectIpsDefaultDTO
         ];
     }
 
+    public function toArrayForVerify(): array
+    {
+        return [
+            'merchantId' => $this->merchantId,
+            'appId' => $this->appId,
+        ];
+    }
+
     public function getDefaultHeaders(): array
     {
         return [
-            'User Id: ' .${$this->appId},
-            'Password: ' . ${$this->password},
+            'User Id: ' .$this->appId,
+            'Password: ' . $this->password,
         ];
     }
 
