@@ -65,4 +65,21 @@ final class ConnectIps extends BasePaymentGateway
 
         return new ConnectIpsResponseDTO($response);
     }
+
+    public function detail(array $data): BasePaymentVerifyResponse
+    {
+        $url = $this->defaultDTO->getBaseUrl() . '/connectipswebws/api/creditor/gettxndetail';
+        $dto = ConnectIpsValidationDTO::fromArray($data);
+        $data = array_merge($this->defaultDTO->toArrayForVerify(), $dto->toArray());
+        $token = connectips_signature_hash_verify($data, $this->defaultDTO->getPrivateKeyPath());
+
+        $payload = [
+            'token' => $token,
+            ...$data
+        ];
+
+        $response = $this->httpClient->post($url, $payload, $this->defaultDTO->getDefaultHeaders());
+
+        return new ConnectIpsResponseDTO($response);
+    }
 }
