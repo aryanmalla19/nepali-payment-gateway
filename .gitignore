@@ -2,3 +2,5 @@
 vendor
 .idea
 .phpunit.result.cache
+src/private.key
+public/index.php
