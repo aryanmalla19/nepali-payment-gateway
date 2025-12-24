@@ -65,7 +65,7 @@ final class Esewa extends BasePaymentGateway
             $this->secretKey
         );
 
-        return new EsewaPaymentResponseDTO([$url, ...$payload,]);
+        return new EsewaPaymentResponseDTO(['url' => $url, ...$payload,]);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
+use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsDefaultDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsRequestDTO;
@@ -29,14 +30,18 @@ final class ConnectIps extends BasePaymentGateway
      * @return mixed
      * @throws InvalidPayloadException
      */
-    public function payment(array $data)
+    public function payment(array $data): BasePaymentResponse
     {
         $requestDto = ConnectIpsRequestDTO::fromArray($data);
         $data = array_merge($requestDto->toArray(), $this->defaultDTO->toArray());
         $token = connectips_signature_hash($data, $this->defaultDTO->getPrivateKeyPath());
         $url = $this->defaultDTO->getBaseUrl() . '/connectipswebgw/loginpage';
 
-        $this->submitForm($url, ['TOKEN' => $token, ...$data]);
+        return new ConnectIpsResponseDTO([
+            'url' => $url,
+            'TOKEN' => $token,
+            ...$data,
+        ]);
     }
 
     /**
