@@ -6,12 +6,12 @@ use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsDefaultDTO;
+use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsPaymentResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsValidationDTO;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use Kbk\NepaliPaymentGateway\Http\CurlHttpClient;
-use Kbk\NepaliPaymentGateway\Validators\ConnectIpsConfig;
 
 final class ConnectIps extends BasePaymentGateway
 {
@@ -37,7 +37,7 @@ final class ConnectIps extends BasePaymentGateway
         $token = connectips_signature_hash($data, $this->defaultDTO->getPrivateKeyPath());
         $url = $this->defaultDTO->getBaseUrl() . '/connectipswebgw/loginpage';
 
-        return new ConnectIpsResponseDTO([
+        return new ConnectIpsPaymentResponseDTO([
             'url' => $url,
             'TOKEN' => $token,
             ...$data,

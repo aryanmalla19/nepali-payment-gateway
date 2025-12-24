@@ -53,8 +53,7 @@ class ConnectIpsDefaultDTO
     public function getDefaultHeaders(): array
     {
         return [
-            'User Id: ' .$this->appId,
-            'Password: ' . $this->password,
+            'Authorization: Basic ' .  base64_encode($this->appId . ':' . $this->password),
         ];
     }
 
