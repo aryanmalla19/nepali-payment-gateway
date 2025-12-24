@@ -26,7 +26,7 @@ class EsewaRequestDTO
     public static function fromArray(array $data): self
     {
         if (!isset($data['amount'])) {
-            throw new InvalidPayloadException('Total Amount is required');
+            throw new InvalidPayloadException('Amount is required');
         }
 
         if (!is_numeric($data['amount']) || $data['amount'] <= 0) {
