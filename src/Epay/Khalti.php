@@ -6,7 +6,9 @@ namespace Kbk\NepaliPaymentGateway\Epay;
 
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
+use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
+use Kbk\NepaliPaymentGateway\DTOs\KhaltiPaymentResponse;
 use Kbk\NepaliPaymentGateway\DTOs\KhaltiRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\KhaltiVerifyResponseDTO;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
@@ -54,14 +56,14 @@ final class Khalti extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    public function payment(array $data): void
+    public function payment(array $data): BasePaymentResponse
     {
         $url = self::BASE_URLS[$this->environment]['url'] . 'v2/epayment/initiate/';
         $dto = KhaltiRequestDTO::fromArray($data);
 
         $response = $this->httpClient->post($url, $dto->toArray(), $this->headers);
 
-        header('Location: ' . $response['payment_url']);
+        return new KhaltiPaymentResponse($response);
     }
 
     /**
