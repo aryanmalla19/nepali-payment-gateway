@@ -10,7 +10,7 @@ class KhaltiPaymentResponseDTO extends BasePaymentResponse
 {
     public function redirect(): void
     {
-        header('Location :' . $this->data['payment_url']);
+        header('Location: ' . $this->data['payment_url']);
         exit();
     }
 
