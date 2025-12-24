@@ -6,7 +6,7 @@ namespace Kbk\NepaliPaymentGateway\DTOs;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 
-class KhaltiPaymentResponse extends BasePaymentResponse
+class KhaltiPaymentResponseDTO extends BasePaymentResponse
 {
     public function redirect(): void
     {

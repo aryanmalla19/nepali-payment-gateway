@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
+use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
+use Kbk\NepaliPaymentGateway\DTOs\EsewaPaymentResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaValidationRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaVerifyResponseDTO;
@@ -19,11 +21,9 @@ final class Esewa extends BasePaymentGateway
     const BASE_URLS = [
         'live' => [
             'url' => 'https://epay.esewa.com.np/api/epay/',
-            'token' => '',
         ],
         'test' => [
             'url' => 'https://rc-epay.esewa.com.np/api/epay/',
-            'token' => '',
         ]
     ];
 
@@ -50,7 +50,7 @@ final class Esewa extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    public function payment(array $data): void
+    public function payment(array $data): BasePaymentResponse
     {
         $dto = EsewaRequestDTO::fromArray($data);
         $url = self::BASE_URLS[$this->environment]['url'] . 'main/v2/form';
@@ -65,7 +65,7 @@ final class Esewa extends BasePaymentGateway
             $this->secretKey
         );
 
-        $this->submitForm($url, $payload);
+        return new EsewaPaymentResponseDTO([$url, ...$payload,]);
     }
 
     /**

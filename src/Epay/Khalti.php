@@ -8,7 +8,7 @@ namespace Kbk\NepaliPaymentGateway\Epay;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
-use Kbk\NepaliPaymentGateway\DTOs\KhaltiPaymentResponse;
+use Kbk\NepaliPaymentGateway\DTOs\KhaltiPaymentResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\KhaltiRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\KhaltiVerifyResponseDTO;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
@@ -23,11 +23,9 @@ final class Khalti extends BasePaymentGateway
     const BASE_URLS = [
         'live' => [
             'url' => 'https://khalti.com/api/',
-            'token' => '',
         ],
         'test' => [
             'url' => 'https://dev.khalti.com/api/',
-            'token' => '',
         ],
     ];
 
@@ -63,7 +61,7 @@ final class Khalti extends BasePaymentGateway
 
         $response = $this->httpClient->post($url, $dto->toArray(), $this->headers);
 
-        return new KhaltiPaymentResponse($response);
+        return new KhaltiPaymentResponseDTO($response);
     }
 
     /**
