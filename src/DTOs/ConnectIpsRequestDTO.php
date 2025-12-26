@@ -13,7 +13,7 @@ class ConnectIpsRequestDTO
         private readonly string $transactionId,
         private readonly string $transactionDate,
         private readonly string $transactionCurrency,
-        private readonly string $transactionAmount,
+        private readonly int $transactionAmount,
         private readonly string $remarks,
         private readonly string $particulars,
         private readonly string $referenceId,
@@ -27,8 +27,8 @@ class ConnectIpsRequestDTO
         ConnectIpsPayment::validate($data);
         return new self(
             transactionId: $data['transaction_id'],
-            transactionDate: $data['transaction_date'],
-            transactionCurrency: strtoupper($data['transaction_currency']),
+            transactionDate: $data['transaction_date'] ?? date('d-m-Y'),
+            transactionCurrency: strtoupper($data['transaction_currency'] ?? 'NPR'),
             transactionAmount: $data['transaction_amount'] * 100,
             remarks: $data['remarks'],
             particulars: $data['particulars'],

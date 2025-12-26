@@ -17,12 +17,11 @@ class ConnectIpsPayment
             throw new InvalidPayloadException('Transaction Id is required');
         }
 
-        if (empty($config['transaction_date'])) {
-            throw new InvalidPayloadException('Transaction Date is required');
-        }
-
-        if (empty($config['transaction_currency'])) {
-            throw new InvalidPayloadException('Transaction Currency is required');
+        if (!empty($config['transaction_date'])) {
+            preg_match('/^\d{2}-\d{2}-\d{4}$/', $config['transaction_date'], $matches);
+            if (count($matches) === 0) {
+                throw new InvalidPayloadException('Transaction Date format is invalid. It should be DD-MM-YYYY');
+            }
         }
 
         if (empty($config['transaction_amount']) || !is_numeric($config['transaction_amount'])) {
