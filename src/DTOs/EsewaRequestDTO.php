@@ -17,8 +17,7 @@ class EsewaRequestDTO
         public readonly float $amount,
         public readonly float $productServiceCharge,
         public readonly float $productDeliveryCharge,
-    )
-    {}
+    ) {}
 
     /**
      * @throws InvalidPayloadException
@@ -41,7 +40,7 @@ class EsewaRequestDTO
             throw new InvalidPayloadException('Invalid failure URL');
         }
 
-        if(empty($data['success_url']) || !filter_var($data['success_url'], FILTER_VALIDATE_URL)) {
+        if (empty($data['success_url']) || !filter_var($data['success_url'], FILTER_VALIDATE_URL)) {
             throw new InvalidPayloadException('Invalid success URL');
         }
 

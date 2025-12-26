@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kbk\NepaliPaymentGateway\DTOs;
 
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
@@ -14,8 +16,7 @@ class ConnectIpsDefaultDTO
         private readonly string $appName,
         private readonly string $privateKeyPath,
         private readonly string $password,
-    )
-    {}
+    ) {}
 
     /**
      * @throws InvalidPayloadException
@@ -53,7 +54,7 @@ class ConnectIpsDefaultDTO
     public function getDefaultHeaders(): array
     {
         return [
-            'Authorization: Basic ' .  base64_encode($this->appId . ':' . $this->password),
+            'Authorization: Basic ' . base64_encode($this->appId . ':' . $this->password),
         ];
     }
 

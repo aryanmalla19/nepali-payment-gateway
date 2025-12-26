@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\DTO;
 
-use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\Epay\Esewa;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use PHPUnit\Framework\TestCase;
 
 class EsewaValidationRequestDTOTest extends TestCase
 {
-
     public function test_it_should_throw_an_exception_when_total_amount_is_non_numeric()
     {
         $this->expectException(InvalidPayloadException::class);

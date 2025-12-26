@@ -8,7 +8,6 @@ use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 
 class ConnectIpsPaymentResponseDTO extends BasePaymentResponse
 {
-
     /**
      * @return void
      */

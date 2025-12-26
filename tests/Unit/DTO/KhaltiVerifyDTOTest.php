@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\DTO;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
@@ -12,12 +14,12 @@ class KhaltiVerifyDTOTest extends TestCase
     public function test_it_should_return_correct_base_verify_response_class()
     {
         self::markTestIncomplete();
-//        $khalti = new Khalti('');
-//
-//        $response = $khalti->verify([
-//            'pidx' => '',
-//        ]);
-//
-//        $this->assertInstanceOf(BasePaymentVerifyResponse::class, $response);
+        //        $khalti = new Khalti('');
+        //
+        //        $response = $khalti->verify([
+        //            'pidx' => '',
+        //        ]);
+        //
+        //        $this->assertInstanceOf(BasePaymentVerifyResponse::class, $response);
     }
 }

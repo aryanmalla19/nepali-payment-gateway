@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kbk\NepaliPaymentGateway\DTOs;
 
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
@@ -15,8 +17,7 @@ class ConnectIpsRequestDTO
         private readonly string $remarks,
         private readonly string $particulars,
         private readonly string $referenceId,
-    )
-    {}
+    ) {}
 
     /**
      * @throws InvalidPayloadException

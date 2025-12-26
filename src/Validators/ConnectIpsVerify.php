@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kbk\NepaliPaymentGateway\Validators;
 
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;

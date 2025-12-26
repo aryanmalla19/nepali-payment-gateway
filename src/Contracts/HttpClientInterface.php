@@ -6,6 +6,6 @@ namespace Kbk\NepaliPaymentGateway\Contracts;
 
 interface HttpClientInterface
 {
-    public function get(string $url, array $payload=[], array $headers=[]);
-    public function post(string $url, array $payload=[], array $headers=[]);
+    public function get(string $url, array $payload = [], array $headers = []);
+    public function post(string $url, array $payload = [], array $headers = []);
 }

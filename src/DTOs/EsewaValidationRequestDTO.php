@@ -11,19 +11,18 @@ class EsewaValidationRequestDTO
     private function __construct(
         public readonly float $totalAmount,
         public readonly string $transactionUuid,
-    )
-    {}
+    ) {}
 
     /**
      * @throws InvalidPayloadException
      */
     public static function fromArray(array $data): self
     {
-        if(!isset($data['total_amount']) || !is_numeric($data['total_amount'])){
+        if (!isset($data['total_amount']) || !is_numeric($data['total_amount'])) {
             throw new InvalidPayloadException('Total Amount is required and must be a numeric value.');
         }
 
-        if(empty($data['transaction_uuid'])){
+        if (empty($data['transaction_uuid'])) {
             throw new InvalidPayloadException('Transaction Uuid is required');
         }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
@@ -58,7 +60,7 @@ final class ConnectIps extends BasePaymentGateway
 
         $payload = [
             'token' => $token,
-            ...$data
+            ...$data,
         ];
 
         $response = $this->httpClient->post($url, $payload, $this->defaultDTO->getDefaultHeaders());
@@ -75,7 +77,7 @@ final class ConnectIps extends BasePaymentGateway
 
         $payload = [
             'token' => $token,
-            ...$data
+            ...$data,
         ];
 
         $response = $this->httpClient->post($url, $payload, $this->defaultDTO->getDefaultHeaders());

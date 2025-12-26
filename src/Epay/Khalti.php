@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kbk\NepaliPaymentGateway\Epay;
 
-
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
@@ -20,7 +19,7 @@ final class Khalti extends BasePaymentGateway
     private readonly string $secretKey;
     private readonly array $headers;
 
-    const BASE_URLS = [
+    public const BASE_URLS = [
         'live' => [
             'url' => 'https://khalti.com/api/',
         ],
@@ -32,15 +31,15 @@ final class Khalti extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    public function __construct(string $secretKey, string $environment='test')
+    public function __construct(string $secretKey, string $environment = 'test')
     {
         parent::__construct(new CurlHttpClient()); // Use DI but for package no DI is good (Change in future if needed)
 
-        if(!in_array($environment, ['live', 'test'])){
+        if (!in_array($environment, ['live', 'test'])) {
             throw new InvalidPayloadException('Environment must be either Live or Test');
         }
 
-        if(empty($secretKey)){
+        if (empty($secretKey)) {
             throw new InvalidPayloadException('Secret Key is required');
         }
 
@@ -71,7 +70,7 @@ final class Khalti extends BasePaymentGateway
     {
         $url = self::BASE_URLS[$this->environment]['url'] . 'v2/epayment/lookup/';
 
-        if(!isset($data['pidx'])){
+        if (!isset($data['pidx'])) {
             throw new InvalidPayloadException('Pidx is required');
         }
 
@@ -80,7 +79,7 @@ final class Khalti extends BasePaymentGateway
         return new KhaltiVerifyResponseDTO($response);
     }
 
-    public function refund(string $transactionId, ?int $amount=null)
+    public function refund(string $transactionId, ?int $amount = null)
     {
         $url = self::BASE_URLS[$this->environment]['url'] . "merchant-transaction/{$transactionId}/refund/";
 
@@ -92,9 +91,9 @@ final class Khalti extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    public function getBankList(string $paymentType='ebanking')
+    public function getBankList(string $paymentType = 'ebanking')
     {
-        if(!in_array($paymentType, ['ebanking', 'mobilecheckout'])){
+        if (!in_array($paymentType, ['ebanking', 'mobilecheckout'])) {
             throw new InvalidPayloadException('Payment Type must be ebanking or mobilecheckout');
         }
 

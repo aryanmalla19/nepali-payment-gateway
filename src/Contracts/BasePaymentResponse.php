@@ -8,12 +8,11 @@ use JetBrains\PhpStorm\NoReturn;
 
 abstract class BasePaymentResponse
 {
-    public function __construct(protected readonly array $data)
-    {}
+    public function __construct(protected readonly array $data) {}
 
-    public abstract function redirect();
+    abstract public function redirect();
 
-    public abstract function getRedirectUrl(): string;
+    abstract public function getRedirectUrl(): string;
 
     public function toArray(): array
     {

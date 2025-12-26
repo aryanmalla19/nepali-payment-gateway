@@ -6,7 +6,4 @@ namespace Kbk\NepaliPaymentGateway\DTOs;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 
-class ConnectIpsResponseDTO extends BasePaymentVerifyResponse
-{
-
-}
+class ConnectIpsResponseDTO extends BasePaymentVerifyResponse {}

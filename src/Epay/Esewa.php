@@ -18,13 +18,13 @@ final class Esewa extends BasePaymentGateway
 {
     private readonly string $environment;
 
-    const BASE_URLS = [
+    public const BASE_URLS = [
         'live' => [
             'url' => 'https://epay.esewa.com.np/api/epay/',
         ],
         'test' => [
             'url' => 'https://rc-epay.esewa.com.np/api/epay/',
-        ]
+        ],
     ];
 
     /**
@@ -32,7 +32,7 @@ final class Esewa extends BasePaymentGateway
      */
     public function __construct(
         private readonly string $productCode,
-        private readonly string $secretKey
+        private readonly string $secretKey,
     ) {
         parent::__construct(new CurlHttpClient()); // Use DI in future but right now we don't need it
 
@@ -40,7 +40,7 @@ final class Esewa extends BasePaymentGateway
             throw new InvalidPayloadException('Product Code is required');
         }
 
-        if (empty($this->secretKey)){
+        if (empty($this->secretKey)) {
             throw new InvalidPayloadException('Secret Key is required');
         }
 
@@ -62,7 +62,7 @@ final class Esewa extends BasePaymentGateway
 
         $payload['signature'] = esewa_signature_hash(
             $payload,
-            $this->secretKey
+            $this->secretKey,
         );
 
         return new EsewaPaymentResponseDTO(['url' => $url, ...$payload,]);

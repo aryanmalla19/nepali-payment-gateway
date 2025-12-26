@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 if (!function_exists('esewa_signature_hash')) {
     function esewa_signature_hash(array $data, string $secretKey): string
     {
@@ -11,7 +13,7 @@ if (!function_exists('esewa_signature_hash')) {
     }
 }
 
-if(! function_exists('connectips_signature_hash')) {
+if (! function_exists('connectips_signature_hash')) {
     function connectips_signature_hash(array $signatureData, string $path): string
     {
         $message = "MERCHANTID={$signatureData['MERCHANTID']},APPID={$signatureData['APPID']},APPNAME={$signatureData['APPNAME']},TXNID={$signatureData['TXNID']},TXNDATE={$signatureData['TXNDATE']},TXNCRNCY={$signatureData['TXNCRNCY']},TXNAMT={$signatureData['TXNAMT']},REFERENCEID={$signatureData['REFERENCEID']},REMARKS={$signatureData['REMARKS']},PARTICULARS={$signatureData['PARTICULARS']},TOKEN=TOKEN";
@@ -24,7 +26,7 @@ if(! function_exists('connectips_signature_hash')) {
     }
 }
 
-if(! function_exists('connectips_signature_hash_verify')) {
+if (! function_exists('connectips_signature_hash_verify')) {
     function connectips_signature_hash_verify(array $signatureData, string $path): string
     {
         $message = "MERCHANTID={$signatureData['merchantId']},APPID={$signatureData['appId']},,REFERENCEID={$signatureData['referenceId']},TXNAMT={$signatureData['txmAmt']}";

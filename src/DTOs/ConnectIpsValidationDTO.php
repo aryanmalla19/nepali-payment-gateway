@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kbk\NepaliPaymentGateway\DTOs;
 
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
@@ -10,8 +12,7 @@ class ConnectIpsValidationDTO
     private function __construct(
         private readonly string $referenceId,
         private readonly string $transactionAmount,
-    )
-    {}
+    ) {}
 
     /**
      * @throws InvalidPayloadException

@@ -17,47 +17,46 @@ class KhaltiRequestDTO
         public readonly array $customerInfo,
         public readonly array $amountBreakdown,
         public readonly array $productDetails,
-    )
-    {}
+    ) {}
 
     /**
      * @throws InvalidPayloadException
      */
     public static function fromArray(array $data): self
     {
-        if(!isset($data['return_url'])){
+        if (!isset($data['return_url'])) {
             throw new InvalidPayloadException('Return Url is required');
         }
 
-        if(!filter_var($data['return_url'], FILTER_VALIDATE_URL)){
+        if (!filter_var($data['return_url'], FILTER_VALIDATE_URL)) {
             throw new InvalidPayloadException('Return Url must be a url');
         }
 
-        if(!isset($data['website_url'])){
+        if (!isset($data['website_url'])) {
             throw new InvalidPayloadException('Website Url is required');
         }
 
-        if(!filter_var($data['website_url'], FILTER_VALIDATE_URL)){
+        if (!filter_var($data['website_url'], FILTER_VALIDATE_URL)) {
             throw new InvalidPayloadException('Website Url must be a url');
         }
 
-        if(!isset($data['amount'])){
+        if (!isset($data['amount'])) {
             throw new InvalidPayloadException('Amount is required');
         }
 
-        if(!isset($data['purchase_order_id'])){
+        if (!isset($data['purchase_order_id'])) {
             throw new InvalidPayloadException('Purchase Order Id is required');
         }
 
-        if(!isset($data['purchase_order_name'])){
+        if (!isset($data['purchase_order_name'])) {
             throw new InvalidPayloadException('Purchase Order Name is required');
         }
 
-        if(!is_numeric($data['amount'])){
+        if (!is_numeric($data['amount'])) {
             throw new InvalidPayloadException('Amount must be numeric');
         }
 
-        if((int) $data['amount'] < 0){
+        if ((int) $data['amount'] < 0) {
             throw new InvalidPayloadException('Amount must be greater than 0');
         }
 

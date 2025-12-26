@@ -19,13 +19,13 @@ final class CurlHttpClient implements HttpClientInterface
      */
     public function get(string $url, array $payload = [], array $headers = []): array
     {
-        if(!empty($payload)){
+        if (!empty($payload)) {
             $url .= '?' . http_build_query($payload);
         }
 
         $ch = curl_init($url);
 
-        if($ch === false){
+        if ($ch === false) {
             throw new HttpClientException('Failed to initialize cURL');
         }
 
@@ -36,10 +36,10 @@ final class CurlHttpClient implements HttpClientInterface
             CURLOPT_CONNECTTIMEOUT => 10,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_HTTPHEADER => array(
+            CURLOPT_HTTPHEADER => [
                 ...$this->headers,
                 ...$headers,
-            ),
+            ],
         ]);
 
         return $this->executeRequest($ch);
@@ -52,7 +52,7 @@ final class CurlHttpClient implements HttpClientInterface
     {
         $ch = curl_init($url);
 
-        if($ch === false){
+        if ($ch === false) {
             throw new HttpClientException('Failed to initialize cURL');
         }
 
@@ -62,10 +62,10 @@ final class CurlHttpClient implements HttpClientInterface
             CURLOPT_CONNECTTIMEOUT => 10,
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_VERIFYHOST => 2,
-            CURLOPT_HTTPHEADER => array(
+            CURLOPT_HTTPHEADER => [
                 ...$this->headers,
                 ...$headers,
-            ),
+            ],
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => json_encode($payload),
         ]);
@@ -81,7 +81,7 @@ final class CurlHttpClient implements HttpClientInterface
         try {
             $response = curl_exec($ch);
 
-            if($response === false){
+            if ($response === false) {
                 $errno = curl_errno($ch);
                 $error = curl_error($ch);
 
@@ -90,14 +90,14 @@ final class CurlHttpClient implements HttpClientInterface
 
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-            if($httpCode >= 400){
+            if ($httpCode >= 400) {
                 throw new HttpClientException("HTTP error {$httpCode}: {$response}");
             }
 
             $decode = json_decode($response, true);
 
-            if(json_last_error() !== JSON_ERROR_NONE){
-                throw new HttpClientException('Could not parse into JSON format: '. json_last_error_msg());
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new HttpClientException('Could not parse into JSON format: ' . json_last_error_msg());
             }
 
             return $decode;
