@@ -107,4 +107,4 @@ The contributions of the Open Source community are highly valued and appreciated
 - Please make pull requests to the `main` branch.
 - Thank you for your support and contributions. Looking forward to reviewing your code.
 
-[PER Coding Style 2.0]: https://www.php-fig.org/per/coding-style/
+[PER Coding Style 3.0]: https://www.php-fig.org/per/coding-style/
