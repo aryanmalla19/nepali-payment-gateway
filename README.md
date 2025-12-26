@@ -59,7 +59,10 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## Usage
 
-### eSewa Payment Example
+### 1) eSewa Payment Gateway
+
+---
+#### 1.1 Payment Example
 
 ```php
 use Kbk\NepaliPaymentGateway\Epay\Esewa;
@@ -80,7 +83,7 @@ return $response->redirect();
 
 ---
 
-### Payment Verification
+#### 1.2 Payment Verification Example
 
 ```php
 $response = $esewa->verify([
@@ -93,6 +96,102 @@ if ($response->isSuccess()) {
 } else {
     echo 'Payment Failed';
 }
+```
+
+
+### 2) Khalti Payment Gateway
+
+---
+
+#### 2.1 Payment Example
+
+```php
+use Kbk\NepaliPaymentGateway\Epay\Khalti;
+
+$khalti = new Khalti(
+  secretKey: 'your-secret-key',
+  enviroment: 'test', // or 'live' 
+);
+
+$response = $khalti->payment([
+    'return_url' => 'https://example.com/success',
+    'website_url' => 'https://example.com/failure',
+    'amount' => 100, // in Rs.
+    'purchase_order_id' => 'TEST01',
+    'purchase_order_name' => 'TEST01',
+]);
+
+return $response->redirect();
+```
+
+#### 2.2 Payment Verification Example
+
+```php
+$response = $khalti->verify([
+    'pidx' => 'your-payment-index',
+]);
+
+if ($response->isSuccess()) {
+    echo 'Payment Successful';
+} else {
+    echo 'Payment Failed';
+}
+```
+
+### 3) ConnectIps Payment Gateway
+
+---
+
+#### 3.1 Payment Example
+
+```php
+use \Kbk\NepaliPaymentGateway\Epay\ConnectIps;
+
+$connectIps = new ConnectIps([
+    'base_url' => 'https://uat.connectips.com', // or 'https://connectips.com' for prod
+    'merchant_id' => 'your-merchant-id',
+    'app_id' => 'your-app-id',
+    'app_name' => 'your-app-name',
+    'private_key_path' => 'your-private-key',
+    'password' => 'your-password',
+]);
+
+$response = $connectIps->payment([
+    'transaction_id' => 'unique-transaction-id',
+    'transaction_date' => 'DD-MM-YYYY', // default is today
+    'transaction_currency' => 'NPR', // default is NPR
+    'remarks' => 'your-remarks',
+    'particulars' => 'your-particulars',
+    'reference_id' => 'your-reference-id',
+]);
+
+return $response->redirect();
+```
+
+#### 3.2 Payment Verification Example
+
+```php
+$response = $connectIps->verify([
+    'reference_id' => 'your-reference-id',
+    'transaction_amount' => 100, // in Rs.
+]);
+
+if ($response->isSuccess()) {
+    echo 'Payment Successful';
+} else {
+    echo 'Payment Failed';
+}
+```
+
+#### 3.3 Payment Detail Example
+
+```php
+$response = $connectIps->detail([
+    'reference_id' => 'your-reference-id',
+    'transaction_amount' => '100', //in Rs.
+]);
+
+$data = $response->toArray();
 ```
 
 ---
