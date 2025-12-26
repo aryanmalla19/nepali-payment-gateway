@@ -4,3 +4,4 @@ vendor
 .phpunit.result.cache
 src/private.key
 public/index.php
+.php-cs-fixer.cache
