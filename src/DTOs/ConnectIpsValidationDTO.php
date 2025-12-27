@@ -11,7 +11,7 @@ class ConnectIpsValidationDTO
 {
     private function __construct(
         private readonly string $referenceId,
-        private readonly string $transactionAmount,
+        private readonly float $transactionAmount,
     ) {}
 
     /**

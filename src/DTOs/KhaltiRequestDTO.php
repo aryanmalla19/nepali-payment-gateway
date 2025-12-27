@@ -11,7 +11,7 @@ class KhaltiRequestDTO
     private function __construct(
         public readonly string $returnUrl,
         public readonly string $websiteUrl,
-        public readonly int $amount,
+        public readonly float $amount,
         public readonly string $purchaseOrderId,
         public readonly string $purchaseOrderName,
         public readonly array $customerInfo,
