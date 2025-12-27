@@ -6,7 +6,6 @@ namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
-use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsDefaultDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsPaymentResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsRequestDTO;
@@ -68,7 +67,7 @@ final class ConnectIps extends BasePaymentGateway
         return new ConnectIpsResponseDTO($response);
     }
 
-    public function detail(array $data): BasePaymentVerifyResponse
+    public function detail(array $data): ConnectIpsResponseDTO
     {
         $url = $this->defaultDTO->getBaseUrl() . '/connectipswebws/api/creditor/gettxndetail';
         $dto = ConnectIpsValidationDTO::fromArray($data);

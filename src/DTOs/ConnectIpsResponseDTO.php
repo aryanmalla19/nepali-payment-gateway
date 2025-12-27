@@ -34,9 +34,9 @@ final class ConnectIpsResponseDTO extends BasePaymentVerifyResponse
         return $this->data['referenceId'];
     }
 
-    public function getToken(): string
+    public function getToken(): ?string
     {
-        return $this->data['token'];
+        return $this->data['token'] ?? null;
     }
 
     /**

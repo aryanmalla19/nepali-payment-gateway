@@ -31,7 +31,7 @@ class ConnectIpsValidationDTO
     {
         return [
             'referenceId' => $this->referenceId,
-            'txmAmt' => $this->transactionAmount,
+            'txnAmt' => $this->transactionAmount,
         ];
     }
 }

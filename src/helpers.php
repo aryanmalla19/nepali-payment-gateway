@@ -29,7 +29,7 @@ if (! function_exists('connectips_signature_hash')) {
 if (! function_exists('connectips_signature_hash_verify')) {
     function connectips_signature_hash_verify(array $signatureData, string $path): string
     {
-        $message = "MERCHANTID={$signatureData['merchantId']},APPID={$signatureData['appId']},,REFERENCEID={$signatureData['referenceId']},TXNAMT={$signatureData['txmAmt']}";
+        $message = "MERCHANTID={$signatureData['merchantId']},APPID={$signatureData['appId']},REFERENCEID={$signatureData['referenceId']},TXNAMT={$signatureData['txnAmt']}";
 
         $privateKey = openssl_pkey_get_private(file_get_contents($path));
 
