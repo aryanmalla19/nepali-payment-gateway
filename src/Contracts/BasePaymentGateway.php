@@ -6,5 +6,5 @@ namespace Kbk\NepaliPaymentGateway\Contracts;
 
 abstract class BasePaymentGateway implements PaymentGatewayInterface
 {
-    public function __construct(public HttpClientInterface $httpClient) {}
+    public function __construct(private readonly HttpClientInterface $httpClient) {}
 }
