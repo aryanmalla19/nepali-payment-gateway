@@ -23,4 +23,20 @@ class ConnectIpsPaymentResponseDTO extends BasePaymentResponse
     {
         return $this->data['url'];
     }
+
+    /**
+     * @return float
+     */
+    public function getTotalAmount(): float
+    {
+        return (float) $this->data['txnAmt'] / 100;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalAmountInPaisa(): int
+    {
+        return (int) $this->data['txnAmt'];
+    }
 }

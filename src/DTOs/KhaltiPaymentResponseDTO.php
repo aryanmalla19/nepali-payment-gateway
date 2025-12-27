@@ -23,4 +23,20 @@ class KhaltiPaymentResponseDTO extends BasePaymentResponse
     {
         return $this->data['pidx'];
     }
+
+    /**
+     * @return float
+     */
+    public function getTotalAmount(): float
+    {
+        return (float) $this->data['total_amount'] / 100;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalAmountInPaisa(): int
+    {
+        return (int) $this->data['total_amount'];
+    }
 }

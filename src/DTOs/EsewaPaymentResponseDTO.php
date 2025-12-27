@@ -23,4 +23,20 @@ class EsewaPaymentResponseDTO extends BasePaymentResponse
     {
         return $this->data['url'];
     }
+
+    /**
+     * @return float
+     */
+    public function getTotalAmount(): float
+    {
+        return (float) $this->data['total_amount'];
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalAmountInPaisa(): int
+    {
+        return $this->data['total_amount'] * 100;
+    }
 }

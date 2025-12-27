@@ -9,7 +9,7 @@ use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 class EsewaValidationRequestDTO
 {
     private function __construct(
-        public readonly float $totalAmount,
+        public readonly int $totalAmount,
         public readonly string $transactionUuid,
     ) {}
 
@@ -27,7 +27,7 @@ class EsewaValidationRequestDTO
         }
 
         return new self(
-            totalAmount: (float) $data['total_amount'],
+            totalAmount: (int) $data['total_amount'],
             transactionUuid: $data['transaction_uuid'],
         );
     }
