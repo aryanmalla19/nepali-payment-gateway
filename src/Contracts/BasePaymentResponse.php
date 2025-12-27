@@ -14,10 +14,6 @@ abstract class BasePaymentResponse
 
     abstract public function getRedirectUrl(): string;
 
-    abstract public function getTotalAmount(): float;
-
-    abstract public function getTotalAmountInPaisa(): int;
-
     public function toArray(): array
     {
         return $this->data;

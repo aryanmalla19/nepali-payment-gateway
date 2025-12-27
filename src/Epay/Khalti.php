@@ -53,7 +53,7 @@ final class Khalti extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    public function payment(array $data): BasePaymentResponse
+    public function payment(array $data): KhaltiPaymentResponseDTO
     {
         $url = self::BASE_URLS[$this->environment]['url'] . 'v2/epayment/initiate/';
         $dto = KhaltiRequestDTO::fromArray($data);

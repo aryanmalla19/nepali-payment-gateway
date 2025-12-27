@@ -6,17 +6,23 @@ namespace Kbk\NepaliPaymentGateway\Contracts;
 
 abstract class BasePaymentVerifyResponse
 {
-    public string $status;
+    protected readonly string $status;
 
-    public function __construct(public array $data)
+    public function __construct(protected readonly array $data)
     {
         $this->status = strtolower($this->data['status']);
     }
 
-    public function isSuccess(): bool
+    public function getStatus(): string
     {
-        return $this->status === 'completed';
+        return $this->status;
     }
+
+    abstract public function getTotalAmount(): float;
+
+    abstract public function getTotalAmountInPaisa(): int;
+
+    abstract public function isSuccess(): bool;
 
     public function isFailure(): bool
     {

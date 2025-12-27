@@ -71,7 +71,7 @@ final class Esewa extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    public function verify(array $data): BasePaymentVerifyResponse
+    public function verify(array $data): EsewaVerifyResponseDTO
     {
         $dto = EsewaValidationRequestDTO::fromArray($data);
 

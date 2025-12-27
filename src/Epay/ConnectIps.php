@@ -48,10 +48,10 @@ final class ConnectIps extends BasePaymentGateway
 
     /**
      * @param array $data
-     * @return BasePaymentVerifyResponse
+     * @return ConnectIpsResponseDTO
      * @throws InvalidPayloadException
      */
-    public function verify(array $data): BasePaymentVerifyResponse
+    public function verify(array $data): ConnectIpsResponseDTO
     {
         $url = $this->defaultDTO->getBaseUrl() . '/connectipswebws/api/creditor/validatetxn';
         $dto = ConnectIpsValidationDTO::fromArray($data);
