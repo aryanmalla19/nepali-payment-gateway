@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
-use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
-use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\DTOs\KhaltiPaymentResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\KhaltiRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\KhaltiVerifyResponseDTO;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use Kbk\NepaliPaymentGateway\Http\CurlHttpClient;
+use Kbk\NepaliPaymentGateway\Validators\KhaltiRefund;
 
 final class Khalti extends BasePaymentGateway
 {
@@ -66,7 +65,7 @@ final class Khalti extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    public function verify(array $data): BasePaymentVerifyResponse
+    public function verify(array $data): KhaltiVerifyResponseDTO
     {
         $url = self::BASE_URLS[$this->environment]['url'] . 'v2/epayment/lookup/';
 
@@ -79,13 +78,22 @@ final class Khalti extends BasePaymentGateway
         return new KhaltiVerifyResponseDTO($response);
     }
 
-    public function refund(string $transactionId, ?int $amount = null)
+    /**
+     * @throws InvalidPayloadException
+     */
+    public function refund(array $data)
     {
+        KhaltiRefund::validate($data);
+        $transactionId = $data['transaction_id'];
+
         $url = self::BASE_URLS[$this->environment]['url'] . "merchant-transaction/{$transactionId}/refund/";
 
-        return $this->httpClient->post($url, [
-            'amount' => $amount,
-        ], $this->headers);
+        $payload = array_filter([
+            'amount' => $data['amount'] ?? null,
+            'mobile' => $data['mobile'] ?? null,
+        ], fn ($value) => $value !== null);
+
+        return $this->httpClient->post($url, $payload, $this->headers);
     }
 
     /**
@@ -97,7 +105,7 @@ final class Khalti extends BasePaymentGateway
             throw new InvalidPayloadException('Payment Type must be ebanking or mobilecheckout');
         }
 
-        $url = self::BASE_URLS['live']['url'] . '/v5/bank/?payment_type=' . $paymentType;
+        $url = self::BASE_URLS['live']['url'] . 'v5/bank/?payment_type=' . $paymentType;
 
         return $this->httpClient->get($url);
     }
