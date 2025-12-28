@@ -6,7 +6,6 @@ namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
-use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaPaymentResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaValidationRequestDTO;
@@ -50,7 +49,7 @@ final class Esewa extends BasePaymentGateway
     /**
      * @throws InvalidPayloadException
      */
-    public function payment(array $data): BasePaymentResponse
+    public function payment(array $data): EsewaPaymentResponseDTO
     {
         $dto = EsewaRequestDTO::fromArray($data);
         $url = self::BASE_URLS[$this->environment]['url'] . 'main/v2/form';

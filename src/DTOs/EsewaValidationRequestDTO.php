@@ -22,6 +22,10 @@ class EsewaValidationRequestDTO
             throw new InvalidPayloadException('Total Amount is required and must be a numeric value.');
         }
 
+        if ($data['total_amount'] < 0) {
+            throw new InvalidPayloadException('Total Amount must be grater than 0');
+        }
+
         if (empty($data['transaction_uuid'])) {
             throw new InvalidPayloadException('Transaction Uuid is required');
         }
