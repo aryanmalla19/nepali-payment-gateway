@@ -5,102 +5,53 @@ declare(strict_types=1);
 namespace Tests\Unit\DTO;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
-use Kbk\NepaliPaymentGateway\Epay\Esewa;
-use PHPUnit\Framework\TestCase;
+use Tests\EsewaTestCase;
 
-class EsewaVerifyResponseDTO extends TestCase
+class EsewaVerifyResponseDTOTest extends EsewaTestCase
 {
     public function test_it_should_return_correct_base_verify_response_class()
     {
-        $esewa = new Esewa('EPAYTEST', '8gBm/:&EnhH.1/q');
-        $response = $esewa->verify([
-            'total_amount' => 100,
-            'transaction_uuid' => '123',
-        ]);
-
-        $this->assertInstanceOf(BasePaymentVerifyResponse::class, $response);
+        $this->assertInstanceOf(BasePaymentVerifyResponse::class, $this->verifyResponse);
     }
 
     public function test_it_should_return_correct_total_amount()
     {
-        $esewa = new Esewa('EPAYTEST', '8gBm/:&EnhH.1/q');
-        $response = $esewa->verify([
-            'total_amount' => 100,
-            'transaction_uuid' => '123',
-        ]);
-
-        $this->assertEquals(100, $response->getTotalAmount());
+        $this->assertEquals(100, $this->verifyResponse->getTotalAmount());
     }
 
     public function test_it_should_return_correct_transaction_uuid()
     {
-        $esewa = new Esewa('EPAYTEST', '8gBm/:&EnhH.1/q');
-        $response = $esewa->verify([
-            'total_amount' => 100,
-            'transaction_uuid' => '123',
-        ]);
-
-        $this->assertEquals('123', $response->getTransactionId());
+        $this->assertEquals('123', $this->verifyResponse->getTransactionId());
     }
 
     public function test_it_should_return_correct_total_amount_in_paisa()
     {
-        $esewa = new Esewa('EPAYTEST', '8gBm/:&EnhH.1/q');
-        $response = $esewa->verify([
-            'total_amount' => 100,
-            'transaction_uuid' => '123',
-        ]);
-
-        $this->assertEquals(10000, $response->getTotalAmountInPaisa());
+        $this->assertEquals(10000, $this->verifyResponse->getTotalAmountInPaisa());
     }
 
     public function test_it_should_return_correct_product_code()
     {
-        $esewa = new Esewa('EPAYTEST', '8gBm/:&EnhH.1/q');
-        $response = $esewa->verify([
-            'total_amount' => 100,
-            'transaction_uuid' => '123',
-        ]);
-
-        $this->assertEquals('EPAYTEST', $response->getProductCode());
+        $this->assertEquals('EPAYTEST', $this->verifyResponse->getProductCode());
     }
 
     public function test_it_should_return_correct_reference_id()
     {
-        $esewa = new Esewa('EPAYTEST', '8gBm/:&EnhH.1/q');
-        $response = $esewa->verify([
-            'total_amount' => 100,
-            'transaction_uuid' => '123',
-        ]);
-
-        $this->assertEquals(null , $response->getReferenceId());
+        $this->assertEquals(null , $this->verifyResponse->getReferenceId());
     }
 
     public function test_it_should_return_correct_status()
     {
-        $esewa = new Esewa('EPAYTEST', '8gBm/:&EnhH.1/q');
-        $response = $esewa->verify([
-            'total_amount' => 100,
-            'transaction_uuid' => '123',
-        ]);
-
-        $this->assertEquals('complete' , $response->getStatus());
+        $this->assertEquals('complete' , $this->verifyResponse->getStatus());
     }
 
     public function test_it_should_return_correct_array()
     {
-        $esewa = new Esewa('EPAYTEST', '8gBm/:&EnhH.1/q');
-        $response = $esewa->verify([
-            'total_amount' => 100,
-            'transaction_uuid' => '123',
-        ]);
-
         $this->assertEquals([
             'product_code' => 'EPAYTEST',
             'transaction_uuid' => '123',
             'total_amount' => 100.0,
             'status' => 'COMPLETE',
             'ref_id' => null,
-        ], $response->toArray());
+        ], $this->verifyResponse->toArray());
     }
 }

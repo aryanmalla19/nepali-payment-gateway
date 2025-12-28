@@ -9,7 +9,7 @@ use Kbk\NepaliPaymentGateway\Epay\Khalti;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use PHPUnit\Framework\TestCase;
 
-class PaymentTest extends TestCase
+class EsewaPaymentTest extends TestCase
 {
     public function test_it_should_throw_an_error_when_argument_is_not_passed()
     {
