@@ -36,12 +36,12 @@ class EsewaVerifyResponseDTOTest extends EsewaTestCase
 
     public function test_it_should_return_correct_reference_id()
     {
-        $this->assertEquals(null , $this->verifyResponse->getReferenceId());
+        $this->assertEquals(null, $this->verifyResponse->getReferenceId());
     }
 
     public function test_it_should_return_correct_status()
     {
-        $this->assertEquals('complete' , $this->verifyResponse->getStatus());
+        $this->assertEquals('complete', $this->verifyResponse->getStatus());
     }
 
     public function test_it_should_return_correct_array()

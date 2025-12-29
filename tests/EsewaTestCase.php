@@ -52,14 +52,14 @@ abstract class EsewaTestCase extends TestCase
     protected function makePayment(array $overrides = []): EsewaPaymentResponseDTO
     {
         return $this->esewa->payment(
-            array_merge($this->paymentPayload, $overrides)
+            array_merge($this->paymentPayload, $overrides),
         );
     }
 
     protected function verifyPayment(array $overrides = []): EsewaVerifyResponseDTO
     {
         return $this->esewa->verify(
-            array_merge($this->verifyPayload, $overrides)
+            array_merge($this->verifyPayload, $overrides),
         );
     }
 }

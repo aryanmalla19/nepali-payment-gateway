@@ -91,7 +91,7 @@ final class Khalti extends BasePaymentGateway
         $payload = array_filter([
             'amount' => $data['amount'] ?? null,
             'mobile' => $data['mobile'] ?? null,
-        ], fn ($value) => $value !== null);
+        ], fn($value) => $value !== null);
 
         return $this->httpClient->post($url, $payload, $this->headers);
     }

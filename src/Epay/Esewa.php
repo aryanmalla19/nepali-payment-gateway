@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
-use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaPaymentResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaRequestDTO;
 use Kbk\NepaliPaymentGateway\DTOs\EsewaValidationRequestDTO;

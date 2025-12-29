@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use Kbk\NepaliPaymentGateway\Epay\Esewa;
-use Kbk\NepaliPaymentGateway\Epay\Khalti;
 use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 use PHPUnit\Framework\TestCase;
 
