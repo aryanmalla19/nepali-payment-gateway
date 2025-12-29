@@ -67,7 +67,7 @@ final class CurlHttpClient implements HttpClientInterface
                 ...$headers,
             ],
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => json_encode($payload),
+            CURLOPT_POSTFIELDS => count($payload) > 0 ? json_encode($payload) : null,
         ]);
 
         return $this->executeRequest($ch);
