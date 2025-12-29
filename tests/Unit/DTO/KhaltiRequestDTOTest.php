@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class KhaltiRequestDTOTest extends TestCase
 {
-    public function test_khalti_should_throw_an_exception_when_return_url_is_missing()
+    public function test_it_should_throw_an_exception_when_return_url_is_missing()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Return Url is required');
@@ -24,7 +24,7 @@ class KhaltiRequestDTOTest extends TestCase
         ]);
     }
 
-    public function test_khalti_should_throw_an_exception_when_return_url_is_invalid()
+    public function test_it_should_throw_an_exception_when_return_url_is_invalid()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Return Url must be a url');
@@ -39,7 +39,7 @@ class KhaltiRequestDTOTest extends TestCase
         ]);
     }
 
-    public function test_khalti_should_throw_an_exception_when_website_url_is_invalid()
+    public function test_it_should_throw_an_exception_when_website_url_is_invalid()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Website Url must be a url');
@@ -54,7 +54,7 @@ class KhaltiRequestDTOTest extends TestCase
         ]);
     }
 
-    public function test_khalti_should_throw_an_exception_when_website_url_is_missing()
+    public function test_it_should_throw_an_exception_when_website_url_is_missing()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Website Url is required');
@@ -68,7 +68,7 @@ class KhaltiRequestDTOTest extends TestCase
         ]);
     }
 
-    public function test_khalti_should_throw_an_exception_when_amount_is_missing()
+    public function test_it_should_throw_an_exception_when_amount_is_missing()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Amount is required');
@@ -82,7 +82,7 @@ class KhaltiRequestDTOTest extends TestCase
         ]);
     }
 
-    public function test_khalti_should_throw_an_exception_when_amount_is_invalid()
+    public function test_it_should_throw_an_exception_when_amount_is_invalid()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Amount must be numeric');
@@ -97,7 +97,7 @@ class KhaltiRequestDTOTest extends TestCase
         ]);
     }
 
-    public function test_khalti_should_throw_an_exception_when_amount_is_less_than_0()
+    public function test_it_should_throw_an_exception_when_amount_is_less_than_0()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Amount must be greater than 0');
@@ -112,7 +112,7 @@ class KhaltiRequestDTOTest extends TestCase
         ]);
     }
 
-    public function test_khalti_should_throw_an_exception_when_purchase_order_id_is_missing()
+    public function test_it_should_throw_an_exception_when_purchase_order_id_is_missing()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Purchase Order Id is required');
@@ -126,7 +126,7 @@ class KhaltiRequestDTOTest extends TestCase
         ]);
     }
 
-    public function test_khalti_should_throw_an_exception_when_purchase_order_name_is_missing()
+    public function test_it_should_throw_an_exception_when_purchase_order_name_is_missing()
     {
         $this->expectException(InvalidPayloadException::class);
         $this->expectExceptionMessage('Purchase Order Name is required');

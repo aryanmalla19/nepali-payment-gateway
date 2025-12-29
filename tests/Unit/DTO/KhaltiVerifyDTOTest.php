@@ -49,7 +49,7 @@ class KhaltiVerifyDTOTest extends KhaltiTestCase
         $this->assertFalse($this->verifyResponse->isRefunded());
     }
 
-    public function test_khalti_should_return_correct_transaction_id()
+    public function test_it_should_return_correct_transaction_id()
     {
         $this->assertEquals('Js7jik7iCkcCik4exBK3F4', $this->verifyResponse->getTransactionId());
     }
