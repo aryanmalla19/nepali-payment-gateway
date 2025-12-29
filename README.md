@@ -61,7 +61,6 @@ require __DIR__ . '/vendor/autoload.php';
 
 ### 1) eSewa Payment Gateway
 
----
 #### 1.1 Payment Example
 
 ```php
@@ -100,8 +99,6 @@ if ($response->isSuccess()) {
 Learn More at [eSewa Payment Gateway Docs](eSewa.md)
 
 ### 2) Khalti Payment Gateway
-
----
 
 #### 2.1 Payment Example
 
@@ -142,8 +139,6 @@ Learn More at [Khalti Payment Gateway Docs](Khalti.md)
 
 
 ### 3) ConnectIps Payment Gateway
-
----
 
 #### 3.1 Payment Example
 
