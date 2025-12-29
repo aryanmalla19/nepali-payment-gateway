@@ -26,9 +26,9 @@ This package is developed and maintained by **Aryan Malla** along with the open-
 
 For gateway-specific rules, configurations, and policies, please refer to the official documentation provided by each payment partner:
 
-- [eSewa Documentation](https://developer.esewa.com.np/)
-- [Khalti Documentation](https://docs.khalti.com/)
-- [ConnectIPS Documentation](https://doc.connectips.com/docs/category/2-connectips-gateway/)
+- [Official eSewa Documentation](https://developer.esewa.com.np/)
+- [Official Khalti Documentation](https://docs.khalti.com/)
+- [Official ConnectIPS Documentation](https://doc.connectips.com/docs/category/2-connectips-gateway/)
 
 ---
 
@@ -97,7 +97,7 @@ if ($response->isSuccess()) {
     echo 'Payment Failed';
 }
 ```
-
+Learn More at [eSewa Payment Gateway Docs](eSewa.md)
 
 ### 2) Khalti Payment Gateway
 
@@ -138,6 +138,9 @@ if ($response->isSuccess()) {
 }
 ```
 
+Learn More at [Khalti Payment Gateway Docs](Khalti.md)
+
+
 ### 3) ConnectIps Payment Gateway
 
 ---
@@ -148,7 +151,7 @@ if ($response->isSuccess()) {
 use \Kbk\NepaliPaymentGateway\Epay\ConnectIps;
 
 $connectIps = new ConnectIps([
-    'base_url' => 'https://uat.connectips.com', // or 'https://connectips.com' for prod
+    'base_url' => 'https://uat.connectips.com',
     'merchant_id' => 'your-merchant-id',
     'app_id' => 'your-app-id',
     'app_name' => 'your-app-name',
@@ -158,8 +161,6 @@ $connectIps = new ConnectIps([
 
 $response = $connectIps->payment([
     'transaction_id' => 'unique-transaction-id',
-    'transaction_date' => 'DD-MM-YYYY', // default is today
-    'transaction_currency' => 'NPR', // default is NPR
     'remarks' => 'your-remarks',
     'particulars' => 'your-particulars',
     'reference_id' => 'your-reference-id',
@@ -183,16 +184,7 @@ if ($response->isSuccess()) {
 }
 ```
 
-#### 3.3 Payment Detail Example
-
-```php
-$response = $connectIps->detail([
-    'reference_id' => 'your-reference-id',
-    'transaction_amount' => '100', //in Rs.
-]);
-
-$data = $response->toArray();
-```
+Learn More at [ConnectIps Payment Gateway Docs](ConnectIps.md)
 
 ---
 
