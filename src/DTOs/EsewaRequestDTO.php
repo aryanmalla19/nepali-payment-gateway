@@ -47,7 +47,7 @@ class EsewaRequestDTO
         return new self(
             successUrl: $data['success_url'],
             failureUrl: $data['failure_url'],
-            totalAmount: (float) ($data['amount'] + ($data['tax_amount'] ?? 0)),
+            totalAmount: (float) ($data['amount'] + ($data['tax_amount'] ?? 0) + ($data['product_service_charge'] ?? 0) + ($data['product_delivery_charge'] ?? 0)),
             transactionId: (string) $data['transaction_uuid'],
             taxAmount: (float) ($data['tax_amount'] ?? 0),
             amount: (float) $data['amount'],
