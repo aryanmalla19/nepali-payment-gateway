@@ -24,7 +24,7 @@ class ConnectIpsPayment
             }
         }
 
-        if (empty($config['transaction_amount']) || !is_numeric($config['transaction_amount'])) {
+        if (empty($config['transaction_amount']) || !is_numeric($config['transaction_amount']) || $config['transaction_amount'] < 0) {
             throw new InvalidPayloadException('Transaction Amount is required and must be numeric');
         }
 

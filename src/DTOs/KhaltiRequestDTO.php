@@ -61,9 +61,9 @@ class KhaltiRequestDTO
         }
 
         if (isset($data['customer_info'])) {
-           if (isset($data['customer_info']['email']) && !filter_var($data['customer_info']['email'], FILTER_VALIDATE_EMAIL)) {
-               throw new InvalidPayloadException('Customer Info - Email field must be a valid email address');
-           }
+            if (isset($data['customer_info']['email']) && !filter_var($data['customer_info']['email'], FILTER_VALIDATE_EMAIL)) {
+                throw new InvalidPayloadException('Customer Info - Email field must be a valid email address');
+            }
 
             if (isset($data['customer_info']['phone']) && !filter_var($data['customer_info']['phone'], FILTER_VALIDATE_INT)) {
                 throw new InvalidPayloadException('Customer Info - Phone Number field must be a valid phone number');
@@ -124,7 +124,7 @@ class KhaltiRequestDTO
         foreach ($amountBreakdown as $index => &$breakdown) {
             if (!isset($breakdown['amount']) || !is_numeric($breakdown['amount']) || $breakdown['amount'] < 0) {
                 throw new InvalidPayloadException(
-                    "Amount must be numeric and positive in Amount Breakdown at index {$index}"
+                    "Amount must be numeric and positive in Amount Breakdown at index {$index}",
                 );
             }
 
@@ -141,19 +141,19 @@ class KhaltiRequestDTO
         foreach ($productDetails as $index => &$productDetail) {
             if (!isset($productDetail['total_price']) || !is_numeric($productDetail['total_price']) || $productDetail['total_price'] < 0) {
                 throw new InvalidPayloadException(
-                    "Total Price must be numeric and positive in Product Details at index {$index}"
+                    "Total Price must be numeric and positive in Product Details at index {$index}",
                 );
             }
 
             if (!isset($productDetail['unit_price']) || !is_numeric($productDetail['unit_price']) || $productDetail['unit_price'] < 0) {
                 throw new InvalidPayloadException(
-                    "Unit Price must be numeric and positive in Product Details at index {$index}"
+                    "Unit Price must be numeric and positive in Product Details at index {$index}",
                 );
             }
 
             if (!isset($productDetail['quantity']) || !is_numeric($productDetail['quantity']) || $productDetail['quantity'] < 0) {
                 throw new InvalidPayloadException(
-                    "Quantity must be numeric and positive in Product Details at index {$index}"
+                    "Quantity must be numeric and positive in Product Details at index {$index}",
                 );
             }
 

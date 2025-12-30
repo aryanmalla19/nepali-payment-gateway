@@ -13,7 +13,7 @@ class ConnectIpsConfig
      */
     public static function validate(array $config): void
     {
-        if (!filter_var($config['base_url'], FILTER_VALIDATE_URL)) {
+        if (empty($config['base_url']) || !filter_var($config['base_url'], FILTER_VALIDATE_URL)) {
             throw new InvalidPayloadException('Base Url must be a valid url');
         }
 
@@ -29,7 +29,7 @@ class ConnectIpsConfig
             throw new InvalidPayloadException('App Name is required');
         }
 
-        if (!file_exists($config['private_key_path'])) {
+        if (empty($config['private_key_path']) || !file_exists($config['private_key_path'])) {
             throw new InvalidPayloadException('Private Key Path - File does not exists');
         }
 
