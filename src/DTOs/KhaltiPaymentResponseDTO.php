@@ -8,7 +8,7 @@ use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 
 class KhaltiPaymentResponseDTO extends BasePaymentResponse
 {
-    public function redirect(): void
+    public function redirect(): never
     {
         header('Location: ' . $this->data['payment_url']);
         exit();

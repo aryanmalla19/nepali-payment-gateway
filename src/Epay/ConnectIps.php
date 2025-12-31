@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Kbk\NepaliPaymentGateway\Epay;
 
 use Kbk\NepaliPaymentGateway\Contracts\BasePaymentGateway;
-use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsDefaultDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsPaymentResponseDTO;
 use Kbk\NepaliPaymentGateway\DTOs\ConnectIpsRequestDTO;
@@ -31,7 +30,7 @@ final class ConnectIps extends BasePaymentGateway
      * @return mixed
      * @throws InvalidPayloadException
      */
-    public function payment(array $data): BasePaymentResponse
+    public function payment(array $data): ConnectIpsPaymentResponseDTO
     {
         $requestDto = ConnectIpsRequestDTO::fromArray($data);
         $data = array_merge($requestDto->toArray(), $this->defaultDTO->toArray());

@@ -9,9 +9,9 @@ use Kbk\NepaliPaymentGateway\Contracts\BasePaymentResponse;
 class EsewaPaymentResponseDTO extends BasePaymentResponse
 {
     /**
-     * @return void
+     * @return never
      */
-    public function redirect(): void
+    public function redirect(): never
     {
         $this->submitForm($this->data['url'], $this->data);
     }
