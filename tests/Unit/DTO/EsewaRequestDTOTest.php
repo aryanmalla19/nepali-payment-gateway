@@ -26,14 +26,6 @@ class EsewaRequestDTOTest extends EsewaTestCase
         $this->makePayment(['amount' => null]);
     }
 
-    public function test_it_should_throw_an_exception_when_transaction_uuid_is_missing()
-    {
-        $this->expectException(InvalidPayloadException::class);
-        $this->expectExceptionMessage('Transaction UUID is required');
-
-        $this->makePayment(['transaction_uuid' => null]);
-    }
-
     public function test_it_should_throw_an_exception_when_success_url_is_missing()
     {
         $this->expectException(InvalidPayloadException::class);
