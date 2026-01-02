@@ -26,7 +26,7 @@ class ConnectIpsRequestDTO
     {
         ConnectIpsPayment::validate($data);
         return new self(
-            transactionId: $data['transaction_id'],
+            transactionId: ($data['transaction_id'] ?? uniqid()),
             transactionDate: $data['transaction_date'] ?? date('d-m-Y'),
             transactionCurrency: strtoupper($data['transaction_currency'] ?? 'NPR'),
             transactionAmount: $data['transaction_amount'] * 100,

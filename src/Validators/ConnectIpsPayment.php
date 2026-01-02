@@ -13,9 +13,6 @@ class ConnectIpsPayment
      */
     public static function validate(array $config): void
     {
-        if (empty($config['transaction_id'])) {
-            throw new InvalidPayloadException('Transaction Id is required');
-        }
 
         if (!empty($config['transaction_date'])) {
             preg_match('/^\d{2}-\d{2}-\d{4}$/', $config['transaction_date'], $matches);

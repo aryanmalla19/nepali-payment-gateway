@@ -9,13 +9,6 @@ use Tests\ConnectIpsTestCase;
 
 class ConnectIpsPaymentResponseTest extends ConnectIpsTestCase
 {
-    public function test_it_should_thrown_an_exception_when_transaction_id_is_missing()
-    {
-        $this->expectException(InvalidPayloadException::class);
-        $this->expectExceptionMessage('Transaction Id is required');
-        $this->makePayment(['transaction_id' => null]);
-    }
-
     public function test_it_should_thrown_an_exception_when_transaction_amount_is_missing()
     {
         $this->expectException(InvalidPayloadException::class);
