@@ -68,7 +68,7 @@ use Kbk\NepaliPaymentGateway\Epay\Esewa;
 
 $esewa = new Esewa([
     'product_code' => 'EPAYTEST',
-    'secret_key'   => 'your-secret-key',
+    'secret_key'   => 'your-secret-key', // use "8gBm/:&EnhH.1/q" for test env
 ]);
 
 $response = $esewa->payment([
@@ -155,7 +155,6 @@ $connectIps = new ConnectIps([
 ]);
 
 $response = $connectIps->payment([
-    'transaction_id' => 'unique-transaction-id',
     'remarks' => 'your-remarks',
     'particulars' => 'your-particulars',
     'reference_id' => 'your-reference-id',

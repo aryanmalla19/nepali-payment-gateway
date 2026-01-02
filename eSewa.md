@@ -41,15 +41,14 @@ use Kbk\NepaliPaymentGateway\Epay\Esewa;
 // Initialize the eSewa client
 $esewa = new Esewa([
     'product_code' => 'EPAYTEST', // auto-detect environment
-    'secret_key'   => 'your-secret-key',
+    'secret_key'   => 'your-secret-key', // use "8gBm/:&EnhH.1/q" for test env
 ]);
 
 // Basic payment request
 $response = $esewa->payment([
-    'amount'       => 1000,
+    'amount'       => 100,
     'success_url'  => 'https://example.com/success',
     'failure_url'  => 'https://example.com/failure',
-    'transaction_uuid' => 'your-unique-id',
 ]);
 
 // Redirect the user to eSewa payment page
@@ -60,10 +59,10 @@ return $response->redirect();
 
 ```php
 $response = $esewa->payment([
-    'amount'                  => 1000,
+    'amount'                  => 100,
     'success_url'             => 'https://example.com/success',
     'failure_url'             => 'https://example.com/failure',
-    'transaction_uuid'        => 'your-unique-id',
+    'transaction_uuid'        => 'your-unique-id', // optional
     'tax_amount'              => 10,   // optional
     'product_service_charge'  => 10,   // optional
     'product_delivery_charge' => 10,   // optional
@@ -84,7 +83,7 @@ After the user completes payment, you can verify the transaction:
 
 ```php
 $response = $esewa->verify([
-    'total_amount'     => 100,
+    'total_amount'     => 100, // in Rs.
     'transaction_uuid' => '123',
 ]);
 

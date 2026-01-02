@@ -36,13 +36,13 @@ $connectIps = new ConnectIps([
    Redirect users to the connectIPS payment gateway:
 ```php
 $response = $connectIps->payment([
-'amount'             => 100,                  // Required: Transaction amount in NPR
-'reference_id'       => 'unique-reference-id', // Required: Your internal reference
-'transaction_id'     => 'unique-txn-id',      // Optional: Unique transaction identifier
-'transaction_date'   => '29-12-2025',         // Optional: Format DD-MM-YYYY (defaults to today)
-'transaction_currency' => 'NPR',             // Optional: Defaults to NPR
-'remarks'            => 'Order #1234',
-'particulars'        => 'Payment for services',
+    'amount'             => 100,                  // Required: Transaction amount in NPR
+    'reference_id'       => 'unique-reference-id', // Required: Your internal reference
+    'remarks'            => 'Order #1234', // Required: Your Remarks
+    'particulars'        => 'Payment for services', // Required: Payment Particulars
+    'transaction_id'     => 'unique-txn-id',      // Optional: Unique transaction identifier
+    'transaction_date'   => '29-12-2025',         // Optional: Format DD-MM-YYYY (defaults to today)
+    'transaction_currency' => 'NPR',             // Optional: Defaults to NPR
 ]);
 
 // Redirect the user to the payment page
