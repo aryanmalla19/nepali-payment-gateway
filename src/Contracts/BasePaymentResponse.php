@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Kbk\NepaliPaymentGateway\Contracts;
 
-use JetBrains\PhpStorm\NoReturn;
-
 abstract class BasePaymentResponse
 {
     public function __construct(protected readonly array $data) {}
@@ -29,8 +27,7 @@ abstract class BasePaymentResponse
         return $this->toJson();
     }
 
-    #[NoReturn]
-    protected function submitForm(string $url, array $payload): void
+    protected function submitForm(string $url, array $payload): never
     {
         echo '<html><body>';
         echo "<form id='form' method='POST' action='{$url}'>";
