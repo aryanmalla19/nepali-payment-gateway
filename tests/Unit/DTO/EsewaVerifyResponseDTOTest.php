@@ -36,7 +36,7 @@ class EsewaVerifyResponseDTOTest extends EsewaTestCase
 
     public function test_it_should_return_correct_reference_id()
     {
-        $this->assertEquals(null, $this->verifyResponse->getReferenceId());
+        $this->assertEquals('00066XV', $this->verifyResponse->getReferenceId());
     }
 
     public function test_it_should_return_correct_status()
@@ -51,7 +51,7 @@ class EsewaVerifyResponseDTOTest extends EsewaTestCase
             'transaction_uuid' => '123',
             'total_amount' => 100.0,
             'status' => 'COMPLETE',
-            'ref_id' => null,
+            'ref_id' => '00066XV',
         ], $this->verifyResponse->toArray());
     }
 }
