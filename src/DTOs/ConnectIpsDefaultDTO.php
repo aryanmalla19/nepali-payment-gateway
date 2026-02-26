@@ -19,7 +19,9 @@ class ConnectIpsDefaultDTO
     ) {}
 
     /**
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
+     * @return self
      */
     public static function fromArray(array $data): self
     {
@@ -34,6 +36,9 @@ class ConnectIpsDefaultDTO
         );
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function toArray(): array
     {
         return [
@@ -43,6 +48,9 @@ class ConnectIpsDefaultDTO
         ];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArrayForVerify(): array
     {
         return [
@@ -51,6 +59,9 @@ class ConnectIpsDefaultDTO
         ];
     }
 
+    /**
+     * @return array<string>
+     */
     public function getDefaultHeaders(): array
     {
         return [

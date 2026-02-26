@@ -15,7 +15,9 @@ class ConnectIpsValidationDTO
     ) {}
 
     /**
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
+     * @return self
      */
     public static function fromArray(array $data): self
     {
@@ -27,6 +29,9 @@ class ConnectIpsValidationDTO
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return [

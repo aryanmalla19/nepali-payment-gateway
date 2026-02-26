@@ -6,12 +6,18 @@ namespace Kbk\NepaliPaymentGateway\Contracts;
 
 abstract class BasePaymentResponse
 {
-    public function __construct(protected readonly array $data) {}
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function __construct(protected readonly array $data = []) {}
 
-    abstract public function redirect();
+    abstract public function redirect(): never;
 
     abstract public function getRedirectUrl(): string;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return $this->data;
@@ -27,6 +33,11 @@ abstract class BasePaymentResponse
         return $this->toJson();
     }
 
+    /**
+     * @param string $url
+     * @param array<string, mixed> $payload
+     * @return never
+     */
     protected function submitForm(string $url, array $payload): never
     {
         echo '<html><body>';

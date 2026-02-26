@@ -9,6 +9,7 @@ use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 final class KhaltiRefund
 {
     /**
+     * @param array<string, mixed> $config
      * @throws InvalidPayloadException
      */
     public static function validate(array $config): void
@@ -19,6 +20,7 @@ final class KhaltiRefund
     }
 
     /**
+     * @param array<string, mixed> $config
      * @throws InvalidPayloadException
      */
     private static function validateTransactionId(array $config): void
@@ -29,6 +31,7 @@ final class KhaltiRefund
     }
 
     /**
+     * @param array<string, mixed> $config
      * @throws InvalidPayloadException
      */
     private static function validateAmount(array $config): void
@@ -43,6 +46,7 @@ final class KhaltiRefund
     }
 
     /**
+     * @param array<string, mixed> $config
      * @throws InvalidPayloadException
      */
     private static function validateMobile(array $config): void

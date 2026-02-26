@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
+
 if (!function_exists('esewa_signature_hash')) {
+    /**
+     * @param array<string, mixed> $data
+     */
     function esewa_signature_hash(array $data, string $secretKey): string
     {
         $message = "total_amount={$data['total_amount']},transaction_uuid={$data['transaction_uuid']},product_code={$data['product_code']}";
@@ -14,6 +18,9 @@ if (!function_exists('esewa_signature_hash')) {
 }
 
 if (! function_exists('connectips_signature_hash')) {
+    /**
+     * @param array<string, mixed> $signatureData
+     */
     function connectips_signature_hash(array $signatureData, string $path): string
     {
         $message = "MERCHANTID={$signatureData['MERCHANTID']},APPID={$signatureData['APPID']},APPNAME={$signatureData['APPNAME']},TXNID={$signatureData['TXNID']},TXNDATE={$signatureData['TXNDATE']},TXNCRNCY={$signatureData['TXNCRNCY']},TXNAMT={$signatureData['TXNAMT']},REFERENCEID={$signatureData['REFERENCEID']},REMARKS={$signatureData['REMARKS']},PARTICULARS={$signatureData['PARTICULARS']},TOKEN=TOKEN";
@@ -27,6 +34,9 @@ if (! function_exists('connectips_signature_hash')) {
 }
 
 if (! function_exists('connectips_signature_hash_verify')) {
+    /**
+     * @param array<string, mixed> $signatureData
+     */
     function connectips_signature_hash_verify(array $signatureData, string $path): string
     {
         $message = "MERCHANTID={$signatureData['merchantId']},APPID={$signatureData['appId']},REFERENCEID={$signatureData['referenceId']},TXNAMT={$signatureData['txnAmt']}";

@@ -8,6 +8,10 @@ abstract class BasePaymentVerifyResponse
 {
     protected readonly string $status;
 
+
+    /**
+     * @param array<string, mixed> $data
+     */
     public function __construct(protected readonly array $data)
     {
         $this->status = strtolower($this->data['status']);
@@ -39,6 +43,9 @@ abstract class BasePaymentVerifyResponse
         return json_encode($this->data);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return $this->data;

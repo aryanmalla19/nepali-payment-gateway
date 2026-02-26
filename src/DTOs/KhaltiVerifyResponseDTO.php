@@ -8,17 +8,11 @@ use Kbk\NepaliPaymentGateway\Contracts\BasePaymentVerifyResponse;
 
 final class KhaltiVerifyResponseDTO extends BasePaymentVerifyResponse
 {
-    /**
-     * @return float
-     */
     public function getTotalAmount(): float
     {
         return (float) $this->data['total_amount'] / 100;
     }
 
-    /**
-     * @return mixed
-     */
     public function getTotalAmountInPaisa(): int
     {
         return (int) $this->data['total_amount'];
@@ -69,9 +63,6 @@ final class KhaltiVerifyResponseDTO extends BasePaymentVerifyResponse
         return $this->status === 'partially refunded';
     }
 
-    /**
-     * @return bool
-     */
     public function isSuccess(): bool
     {
         return $this->status == 'completed';

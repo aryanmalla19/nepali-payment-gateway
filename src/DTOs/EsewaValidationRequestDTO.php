@@ -14,7 +14,9 @@ class EsewaValidationRequestDTO
     ) {}
 
     /**
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
+     * @return self
      */
     public static function fromArray(array $data): self
     {
@@ -36,6 +38,9 @@ class EsewaValidationRequestDTO
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return [

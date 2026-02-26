@@ -9,6 +9,7 @@ use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 class ConnectIpsVerify
 {
     /**
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
      */
     public static function validate(array $data): void

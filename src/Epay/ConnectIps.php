@@ -16,7 +16,9 @@ use Kbk\NepaliPaymentGateway\Http\CurlHttpClient;
 final class ConnectIps extends BasePaymentGateway
 {
     private ConnectIpsDefaultDTO $defaultDTO;
+
     /**
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
      */
     public function __construct(array $data)
@@ -26,8 +28,7 @@ final class ConnectIps extends BasePaymentGateway
     }
 
     /**
-     * @param array $data
-     * @return mixed
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
      */
     public function payment(array $data): ConnectIpsPaymentResponseDTO
@@ -45,8 +46,7 @@ final class ConnectIps extends BasePaymentGateway
     }
 
     /**
-     * @param array $data
-     * @return ConnectIpsResponseDTO
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
      */
     public function verify(array $data): ConnectIpsResponseDTO
@@ -66,6 +66,10 @@ final class ConnectIps extends BasePaymentGateway
         return new ConnectIpsResponseDTO($response);
     }
 
+    /**
+     * @param array<string, mixed> $data
+     * @throws InvalidPayloadException
+     */
     public function detail(array $data): ConnectIpsResponseDTO
     {
         $url = $this->defaultDTO->getBaseUrl() . '/connectipswebws/api/creditor/gettxndetail';

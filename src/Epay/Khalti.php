@@ -16,6 +16,9 @@ final class Khalti extends BasePaymentGateway
 {
     private readonly string $environment;
     private readonly string $secretKey;
+    /**
+     * @var array|string[]
+     */
     private readonly array $headers;
 
     public const BASE_URLS = [
@@ -79,9 +82,11 @@ final class Khalti extends BasePaymentGateway
     }
 
     /**
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
+     * @return array<string, mixed>
      */
-    public function refund(array $data)
+    public function refund(array $data): array
     {
         KhaltiRefund::validate($data);
         $transactionId = $data['transaction_id'];
@@ -97,9 +102,10 @@ final class Khalti extends BasePaymentGateway
     }
 
     /**
+     * @return array<string, mixed>
      * @throws InvalidPayloadException
      */
-    public function getBankList(string $paymentType = 'ebanking')
+    public function getBankList(string $paymentType = 'ebanking'): array
     {
         if (!in_array($paymentType, ['ebanking', 'mobilecheckout'])) {
             throw new InvalidPayloadException('Payment Type must be ebanking or mobilecheckout');

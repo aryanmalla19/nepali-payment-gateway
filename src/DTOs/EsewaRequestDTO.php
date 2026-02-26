@@ -20,6 +20,8 @@ class EsewaRequestDTO
     ) {}
 
     /**
+     * @param array<string, mixed> $data
+     * @return self
      * @throws InvalidPayloadException
      */
     public static function fromArray(array $data): self
@@ -53,6 +55,9 @@ class EsewaRequestDTO
 
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         return [

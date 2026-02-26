@@ -6,6 +6,15 @@ namespace Kbk\NepaliPaymentGateway\Contracts;
 
 interface PaymentGatewayInterface
 {
-    public function payment(array $data);
+    /**
+     * @param array<string, mixed> $data
+     * @return BasePaymentResponse
+     */
+    public function payment(array $data): BasePaymentResponse;
+
+    /**
+     * @param array<string, mixed> $data
+     * @return BasePaymentVerifyResponse
+     */
     public function verify(array $data): BasePaymentVerifyResponse;
 }

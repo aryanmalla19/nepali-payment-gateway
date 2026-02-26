@@ -9,6 +9,9 @@ use Kbk\NepaliPaymentGateway\Exceptions\HttpClientException;
 
 final class CurlHttpClient implements HttpClientInterface
 {
+    /**
+     * @var array<string>
+     */
     private array $headers = [
         'Content-Type: application/json',
         'Accept: application/json',
@@ -74,9 +77,10 @@ final class CurlHttpClient implements HttpClientInterface
     }
 
     /**
+     * @param mixed $ch
      * @throws HttpClientException
-     */
-    private function executeRequest($ch)
+2     */
+    private function executeRequest($ch): mixed
     {
         try {
             $response = curl_exec($ch);

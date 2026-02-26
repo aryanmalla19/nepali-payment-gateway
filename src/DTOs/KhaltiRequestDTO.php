@@ -8,6 +8,16 @@ use Kbk\NepaliPaymentGateway\Exceptions\InvalidPayloadException;
 
 class KhaltiRequestDTO
 {
+    /**
+     * @param string $returnUrl
+     * @param string $websiteUrl
+     * @param int $amount
+     * @param string $purchaseOrderId
+     * @param string $purchaseOrderName
+     * @param array<string, mixed> $customerInfo
+     * @param array<string, mixed> $amountBreakdown
+     * @param array<string, mixed> $productDetails
+     */
     private function __construct(
         public readonly string $returnUrl,
         public readonly string $websiteUrl,
@@ -20,7 +30,9 @@ class KhaltiRequestDTO
     ) {}
 
     /**
+     * @param array<string, mixed> $data
      * @throws InvalidPayloadException
+     * @return self
      */
     public static function fromArray(array $data): self
     {
@@ -90,6 +102,9 @@ class KhaltiRequestDTO
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array
     {
         $data = [
@@ -116,7 +131,7 @@ class KhaltiRequestDTO
     }
 
     /**
-     * @param array $amountBreakdown
+     * @param array<string, mixed> $amountBreakdown
      * @throws InvalidPayloadException
      */
     private static function validateAmountBreakdown(array &$amountBreakdown): void
@@ -133,7 +148,7 @@ class KhaltiRequestDTO
     }
 
     /**
-     * @param array $productDetails
+     * @param array<string, mixed> $productDetails
      * @throws InvalidPayloadException
      */
     private static function validateProductDetails(array &$productDetails): void
